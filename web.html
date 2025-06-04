@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TomorrowCFO</title>
+  <style>
+    :root {
+      --background: #FFFFFF;
+      --brand: #0C2D48;
+      --accent: #3AA17E;
+      --neutral-light: #F4F4F4;
+      --neutral-dark: #DDDDDD;
+      --aux: #5C6F7B;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--background);
+      color: var(--brand);
+      scroll-behavior: smooth;
+    }
+
+    /* ─── Global Utility Classes ─────────────────────────────── */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      margin: 0 0 0.5em 0;
+      line-height: 1.3;
+    }
+    p { line-height: 1.6; }
+    .btn {
+      display: inline-block;
+      padding: 0.75em 1.5em;
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .btn:hover { background: var(--accent); }
+
+    /* ─── Navigation ─────────────────────────────────────────── */
+    header {
+      background: var(--brand);
+      color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1em 0;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5em;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+
+    /* ─── Hero Sections ─────────────────────────────────────── */
+    .hero {
+      padding: 4em 0 3em;
+    }
+    .hero h1 { font-size: 2.5rem; }
+    .hero-sub {
+      font-size: 1.25rem;
+      margin-bottom: 1.5em;
+    }
+
+    /* Background strip for visual separation */
+    .strip { background: var(--neutral-light); padding: 3em 0; }
+
+    /* ─── Services Grid ─────────────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5em;
+    }
+    .service {
+      background: #fff;
+      border: 1px solid var(--neutral-dark);
+      border-left: 4px solid var(--accent);
+      padding: 1.25em;
+      border-radius: 4px;
+      transition: transform 0.2s;
+    }
+    .service:hover { transform: translateY(-4px); }
+
+    /* ─── Insights ──────────────────────────────────────────── */
+    .insights {
+      text-align: center;
+      padding: 2em 0;
+    }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    footer {
+      background: var(--brand);
+      color: #fff;
+      text-align: center;
+      padding: 2em 0;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <!-- ─── Navigation ────────────────────────────────────────── -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo" style="font-weight:700; font-size:1.2rem;">TomorrowCFO</div>
+        <ul>
+          <li><a href="#home">Home / 首页</a></li>
+          <li><a href="#about">About / 关于我</a></li>
+          <li><a href="#services">Services / 服务</a></li>
+          <li><a href="#insight">Insight / 洞察</a></li>
+          <li><a href="#contact">Contact / 联系</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── English Hero Section ─────────────────────────────── -->
+  <section id="home" class="hero container">
+    <h1>Welcome to TomorrowCFO</h1>
+    <p class="hero-sub">Empowering forward‑thinking finance leadership for a rapidly evolving world.</p>
+    <p>Strategic CFO expertise across Asia, Africa, North America and the globe. With 25+ years in multinational finance leadership, I help tomorrow's finance leaders grow today — through advisory, insights, and intelligent automation.</p>
+    <p><strong>Global mindset, grounded practice · Bilingual delivery, bilingual impact · Digital fluency meets human‑centered finance</strong></p>
+    <a href="#about" class="btn">Explore More</a>
+    <a href="#contact" class="btn" style="margin-left:0.5em; background: var(--accent);">Get in Touch</a>
+  </section>
+
+  <!-- ─── Chinese Hero Section ─────────────────────────────── -->
+  <section class="hero container strip">
+    <h1>欢迎来到 TomorrowCFO 明日财务官</h1>
+    <p class="hero-sub">立足当下，赋能未来型财务领导力。</p>
+    <p><strong>25年全球财务长实战经验，</strong>从中国到亚太、从非洲到北美，融合国际财会准则、流程自动化与智慧管理，为下一代财经领袖导航。</p>
+    <p><strong>全球视野，脚踏实地 · 中英双语，文化共振 · 数智融合，以人为本</strong></p>
+    <a href="#about" class="btn">了解更多</a>
+    <a href="#contact" class="btn" style="margin-left:0.5em; background: var(--accent);">立即联系</a>
+  </section>
+
+  <!-- ─── Founder’s Note ─────────────────────────────────────-->
+  <section id="about" class="container" style="padding:3em 0;">
+    <h2>Founder’s Note</h2>
+    <p><em>In a world being reshaped by AI, geopolitics, and digital transformation, the role of CFO is evolving beyond numbers. It requires wisdom, systems thinking, and lifelong curiosity.</em></p>
+    <p>I’ve walked that path—across continents, crises, and cultures—and now I’m here to help others shape their own.</p>
+    <p>Whether you’re a rising finance leader, a founder seeking financial clarity, or a board looking for independent insight—I hope this space brings clarity, calm, and capability.</p>
+    <hr style="margin:2em 0; border:none; border-top:1px solid var(--neutral-dark);">
+    <p><em>在这个被AI、地缘政治和数智化重塑的时代，CFO的角色远不止“算账”，而是一种战略的沉稳与前瞻。</em></p>
+    <p>我走过那条路——跨越洲际、行业和周期；如今，希望以经验为你点亮路径。</p>
+    <p>无论你是冉冉升起的财务新星、寻求数字转型的企业家，还是需要独立洞见的董事会成员，愿这里成为你的智慧港湾。</p>
+  </section>
+
+  <!-- ─── Services Preview ─────────────────────────────────── -->
+  <section id="services" class="strip">
+    <div class="container">
+      <h2 style="text-align:center;">How I Can Help / 我可以协助你</h2>
+      <div class="services-grid" style="margin-top:2em;">
+        <div class="service">财务转型与数字化自动化</div>
+        <div class="service">培养高潜财务领袖</div>
+        <div class="service">财务建模与决策支持系统</div>
+        <div class="service">跨文化财务战略顾问</div>
+        <div class="service">独立董事及治理支持</div>
+      </div>
+      <div style="text-align:center; margin-top:2em;">
+        <a href="#" class="btn">查看所有服务</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Insights Teaser ─────────────────────────────────── -->
+  <section id="insight" class="insights container">
+    <h2>洞察专栏 (Coming Soon)</h2>
+    <p>我的博客即将上线，内容将涵盖：</p>
+    <ul style="text-align:left; max-width:600px; margin:1em auto;">
+      <li>财务领导力与职场战略</li>
+      <li>各国 GAAP 与 IFRS 差异解析</li>
+      <li>自动化工具与财务 AI 实践</li>
+      <li>企业文化中的财务角色转型</li>
+      <li>CFO 与董事会的关系重构</li>
+    </ul>
+    <p>可 <a href="#contact">订阅提醒</a>，或通过邮箱联系我。</p>
+  </section>
+
+  <!-- ─── Contact ─────────────────────────────────────────── -->
+  <footer id="contact">
+    <div class="container">
+      <h2>Contact / 联系方式</h2>
+      <p>Email: <a href="mailto:contact@tomorrowcfo.com">contact@tomorrowcfo.com</a></p>
+      <p>LinkedIn: <a href="#">Coming Soon</a></p>
+      <p>服务地区：全球远程 + 亚洲 / 北美本地可约</p>
+    </div>
+  </footer>
+</body>
+</html>

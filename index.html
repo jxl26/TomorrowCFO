@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TomorrowCFO</title>
   <style>
     :root {
@@ -12,6 +12,11 @@
       --neutral-light: #F4F4F4;
       --neutral-dark: #DDDDDD;
       --aux: #5C6F7B;
+
+      /* Category hues (C/F/O) */
+      --c-green: #4CAF50;
+      --c-blue:  #1A237E;
+      --c-gold:  #FFB300;
     }
 
     html, body {
@@ -23,99 +28,86 @@
       scroll-behavior: smooth;
     }
 
-    /* ─── Global Utility Classes ─────────────────────────────── */
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: auto;
-    }
-    h1, h2, h3 {
-      margin: 0 0 0.5em 0;
-      line-height: 1.3;
-    }
+    .container { width: 90%; max-width: 1200px; margin: auto; }
+    h1, h2, h3 { margin: 0 0 0.5em 0; line-height: 1.3; }
     p { line-height: 1.6; }
     .btn {
-      display: inline-block;
-      padding: 0.75em 1.5em;
-      background: var(--brand);
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: background 0.3s ease;
+      display: inline-block; padding: 0.75em 1.5em;
+      background: var(--brand); color: #fff; border: 0; border-radius: 4px;
+      text-decoration: none; transition: background .3s ease;
     }
     .btn:hover { background: var(--accent); }
 
     /* ─── Navigation ─────────────────────────────────────────── */
-    header {
-      background: var(--brand);
-      color: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1em 0;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5em;
-      margin: 0;
-      padding: 0;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.2s;
-    }
+    header { background: var(--brand); color:#fff; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+    nav { display:flex; align-items:center; justify-content:space-between; padding:1em 0; }
+    nav ul { list-style:none; display:flex; gap:1.25em; margin:0; padding:0; }
+    nav a { color:#fff; text-decoration:none; font-weight:600; transition: color .2s; }
     nav a:hover { color: var(--accent); }
 
-    /* ─── Hero Sections ─────────────────────────────────────── */
-    .hero {
-      padding: 4em 0 3em;
-    }
-    .hero h1 { font-size: 2.5rem; }
-    .hero-sub {
-      font-size: 1.25rem;
-      margin-bottom: 1.5em;
-    }
+    /* Logo block (image + wordmark) */
+    .logo { display:flex; align-items:center; gap:.6em; text-decoration:none; color:#fff; font-weight:700; font-size:1.15rem; }
+    .logo img { width:36px; height:auto; display:block; border-radius:4px; }
 
-    /* Background strip for visual separation */
-    .strip { background: var(--neutral-light); padding: 3em 0; }
+    .lang-switch { display:flex; align-items:center; gap:.5em; }
+    .lang-btn {
+      background: transparent; color:#fff; border:1px solid rgba(255,255,255,.35);
+      padding:.45em .75em; border-radius:20px; cursor:pointer; font-weight:600;
+    }
+    .lang-btn:hover { border-color:#fff; }
 
-    /* ─── Services Grid ─────────────────────────────────────── */
+    /* ─── Background bands / gradients ──────────────────────── */
+    .grad-a { background: linear-gradient(180deg, #FFFFFF 0%, #F7FAF9 100%); }
+    .grad-b { background: linear-gradient(180deg, #F2F6F9 0%, #FFFFFF 100%); }
+    .strip { background: var(--neutral-light); padding: 3em 0; } /* used elsewhere */
+
+    /* ─── Sections & layout ─────────────────────────────────── */
+    .hero { padding:4em 0 3em; text-align: center; }
+    .hero.home { text-align: left; }
+    .hero h1 { font-size:2.2rem; }
+    .hero-sub { font-size:1.15rem; margin-bottom:1.25em; }
+
+    /* Make content span the full container width (no artificial narrowing) */
+    .lead { max-width: none; margin-inline: 0; }
+
     .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5em;
+      display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:1.25em;
     }
     .service {
-      background: #fff;
-      border: 1px solid var(--neutral-dark);
-      border-left: 4px solid var(--accent);
-      padding: 1.25em;
-      border-radius: 4px;
-      transition: transform 0.2s;
+      background:#fff; border:1px solid var(--neutral-dark); border-left:4px solid var(--accent);
+      padding:1.1em; border-radius:4px; transition: transform .2s;
     }
     .service:hover { transform: translateY(-4px); }
 
-    /* ─── Insights ──────────────────────────────────────────── */
-    .insights {
-      text-align: center;
-      padding: 2em 0;
-    }
+    /* Insights read like articles; left-align content */
+    .insights { text-align:left; padding:2em 0; }
 
-    /* ─── Footer ────────────────────────────────────────────── */
-    footer {
-      background: var(--brand);
-      color: #fff;
-      text-align: center;
-      padding: 2em 0;
+    footer { background: var(--brand); color:#fff; text-align:center; padding:2em 0; }
+    footer a { color: var(--accent); text-decoration:none; }
+
+    /* ─── i18n visibility ───────────────────────────────────── */
+    [data-lang]{ display:none; }
+    html[lang="en"] [data-lang="en"]{ display:revert; }
+    html[lang="zh"] [data-lang="zh"]{ display:revert; }
+
+    /* ─── Pills for C/F/O tags ──────────────────────────────── */
+    .pill { display:inline-block; padding:.25em .6em; border-radius:999px; border:1px solid var(--neutral-dark); font-size:.85rem; }
+    .c-green{ background: color-mix(in srgb, var(--c-green) 15%, #fff); border-color: var(--c-green); }
+    .c-blue{  background: color-mix(in srgb, var(--c-blue) 15%,  #fff); border-color: var(--c-blue); }
+    .c-gold{  background: color-mix(in srgb, var(--c-gold) 20%,  #fff); border-color: var(--c-gold); }
+
+    /* ─── Simple timestamp badge (no hash/URL) ──────────────── */
+    .prov {
+      display:inline-flex; align-items:center; gap:.4em;
+      font-size:.85rem; padding:.15em .6em;
+      border:1px solid var(--neutral-dark); border-radius:999px;
+      background: linear-gradient(135deg, #f7f7f7, #ececec);
+      margin-left:.5em; vertical-align: middle; color: var(--brand);
     }
-    footer a { color: var(--accent); text-decoration: none; }
+    .prov .dot { width:.5em; height:.5em; border-radius:50%; background: var(--accent); }
+    .prov[data-cat="C"] .dot { background: var(--c-green); }
+    .prov[data-cat="F"] .dot { background: var(--c-blue); }
+    .prov[data-cat="O"] .dot { background: var(--c-gold); }
   </style>
 </head>
 <body>
@@ -123,89 +115,269 @@
   <header>
     <div class="container">
       <nav>
-        <div class="logo" style="font-weight:700; font-size:1.2rem;">TomorrowCFO</div>
+        <a class="logo" href="#home">
+          <!-- Put logo.png in the same folder as this HTML -->
+          <img src="logo.png" alt="TomorrowCFO logo" />
+          <span>TomorrowCFO</span>
+        </a>
         <ul>
-          <li><a href="#home">Home / 首页</a></li>
-          <li><a href="#about">About / 关于我</a></li>
-          <li><a href="#services">Services / 服务</a></li>
-          <li><a href="#insight">Insight / 洞察</a></li>
-          <li><a href="#contact">Contact / 联系</a></li>
+          <li><a href="#home"   data-lang="en">Home</a><a href="#home"   data-lang="zh">首页</a></li>
+          <li><a href="#about"  data-lang="en">About</a><a href="#about"  data-lang="zh">关于我们</a></li>
+          <li><a href="#cfo"    data-lang="en">C.F.O. Framework</a><a href="#cfo" data-lang="zh">明日财务官模型</a></li>
+          <li><a href="#services" data-lang="en">Services</a><a href="#services" data-lang="zh">服务内容</a></li>
+          <li><a href="#perspectives" data-lang="en">Perspectives</a><a href="#perspectives" data-lang="zh">个人原创</a></li>
         </ul>
+        <div class="lang-switch">
+          <button class="lang-btn" id="langToggle" aria-label="Switch language">🌐 中/EN</button>
+        </div>
       </nav>
     </div>
   </header>
 
-  <!-- ─── English Hero Section ─────────────────────────────── -->
-  <section id="home" class="hero container">
-    <h1>Welcome to TomorrowCFO</h1>
-    <p class="hero-sub">Empowering forward‑thinking finance leadership for a rapidly evolving world.</p>
-    <p>Strategic CFO expertise across Asia, Africa, North America and the globe. With 25+ years in multinational finance leadership, I help tomorrow's finance leaders grow today — through advisory, insights, and intelligent automation.</p>
-    <p><strong>Global mindset, grounded practice · Bilingual delivery, bilingual impact · Digital fluency meets human‑centered finance</strong></p>
-    <a href="#about" class="btn">Explore More</a>
-    <a href="#contact" class="btn" style="margin-left:0.5em; background: var(--accent);">Get in Touch</a>
-  </section>
-
-  <!-- ─── Chinese Hero Section ─────────────────────────────── -->
-  <section class="hero container strip">
-    <h1>欢迎来到 TomorrowCFO 明日财务官</h1>
-    <p class="hero-sub">立足当下，赋能未来型财务领导力。</p>
-    <p><strong>25年全球财务长实战经验，</strong>从中国到亚太、从非洲到北美，融合国际财会准则、流程自动化与智慧管理，为下一代财经领袖导航。</p>
-    <p><strong>全球视野，脚踏实地 · 中英双语，文化共振 · 数智融合，以人为本</strong></p>
-    <a href="#about" class="btn">了解更多</a>
-    <a href="#contact" class="btn" style="margin-left:0.5em; background: var(--accent);">立即联系</a>
-  </section>
-
-  <!-- ─── Founder’s Note ─────────────────────────────────────-->
-  <section id="about" class="container" style="padding:3em 0;">
-    <h2>Founder’s Note</h2>
-    <p><em>In a world being reshaped by AI, geopolitics, and digital transformation, the role of CFO is evolving beyond numbers. It requires wisdom, systems thinking, and lifelong curiosity.</em></p>
-    <p>I’ve walked that path—across continents, crises, and cultures—and now I’m here to help others shape their own.</p>
-    <p>Whether you’re a rising finance leader, a founder seeking financial clarity, or a board looking for independent insight—I hope this space brings clarity, calm, and capability.</p>
-    <hr style="margin:2em 0; border:none; border-top:1px solid var(--neutral-dark);">
-    <p><em>在这个被AI、地缘政治和数智化重塑的时代，CFO的角色远不止“算账”，而是一种战略的沉稳与前瞻。</em></p>
-    <p>我走过那条路——跨越洲际、行业和周期；如今，希望以经验为你点亮路径。</p>
-    <p>无论你是冉冉升起的财务新星、寻求数字转型的企业家，还是需要独立洞见的董事会成员，愿这里成为你的智慧港湾。</p>
-  </section>
-
-  <!-- ─── Services Preview ─────────────────────────────────── -->
-  <section id="services" class="strip">
+  <!-- ─── HOME (left-aligned) ───────────────────────────────── -->
+  <section id="home" class="hero home grad-a">
     <div class="container">
-      <h2 style="text-align:center;">How I Can Help / 我可以协助你</h2>
-      <div class="services-grid" style="margin-top:2em;">
-        <div class="service">财务转型与数字化自动化</div>
-        <div class="service">培养高潜财务领袖</div>
-        <div class="service">财务建模与决策支持系统</div>
-        <div class="service">跨文化财务战略顾问</div>
-        <div class="service">独立董事及治理支持</div>
+      <!-- EN -->
+      <div data-lang="en">
+        <h1>Tomorrow’s CFO. Today.</h1>
+        <p class="hero-sub">In uncertainty, we find direction. In complexity, we uncover order.</p>
+        <p>At TomorrowCFO, we blend deep insight, systems thinking, and practical experience to guide finance professionals on their transformation journey and empower business leaders to scale new heights. Welcome to TomorrowCFO.</p>
+        <h3>Vision</h3>
+        <p>To be the trusted knowledge hub and transformation partner for the next generation of finance leaders — empowering them to navigate uncertainty and shape the future.</p>
+        <h3>Mission</h3>
+        <p>Grounded in a global perspective and hands-on executive experience, we deliver actionable consulting, training, and tools that help CFOs and senior leaders cut through complexity, drive transformation, and lead with confidence.</p>
+        <p><em>Tip: Please use the top navigation to explore our values and offerings.</em></p>
+        <p><a href="#about" class="btn">Explore More</a> <a href="#services" class="btn" style="margin-left:.5em; background: var(--accent);">Our Services</a></p>
       </div>
-      <div style="text-align:center; margin-top:2em;">
-        <a href="#" class="btn">查看所有服务</a>
+      <!-- ZH -->
+      <div data-lang="zh">
+        <h1>Tomorrow’s CFO. Today.</h1>
+        <p class="hero-sub">在不确定中洞察方向，于复杂中寻找秩序。</p>
+        <p>TomorrowCFO 以深度洞察、系统思维与实战经验，陪伴财务同行迈向转型之路，助力商业领袖攀登事业高峰。欢迎来到 TomorrowCFO。</p>
+        <h3>愿景</h3>
+        <p>成为新一代财务领袖的知识基地与转型伙伴，帮助他们在不确定时代中开拓未来。</p>
+        <h3>使命</h3>
+        <p>以全球视野和实战智慧为底蕴，输出咨询、培训、工具和思想，助力财务高管和管理者在复杂中洞察方向，在不确定中引领变革，实现卓越。</p>
+        <p><em>提示：请通过上方导航，探索我们的价值与服务。</em></p>
+        <p><a href="#about" class="btn">了解更多</a> <a href="#services" class="btn" style="margin-left:.5em; background: var(--accent);">查看服务</a></p>
       </div>
     </div>
   </section>
 
-  <!-- ─── Insights Teaser ─────────────────────────────────── -->
-  <section id="insight" class="insights container">
-    <h2>洞察专栏 (Coming Soon)</h2>
-    <p>我的博客即将上线，内容将涵盖：</p>
-    <ul style="text-align:left; max-width:600px; margin:1em auto;">
-      <li>财务领导力与职场战略</li>
-      <li>各国 GAAP 与 IFRS 差异解析</li>
-      <li>自动化工具与财务 AI 实践</li>
-      <li>企业文化中的财务角色转型</li>
-      <li>CFO 与董事会的关系重构</li>
-    </ul>
-    <p>可 <a href="#contact">订阅提醒</a>，或通过邮箱联系我。</p>
+  <!-- ─── ABOUT (different gradient) ────────────────────────── -->
+  <section id="about" class="grad-b">
+    <div class="container" style="padding:3em 0;">
+      <div data-lang="en">
+        <h2>About</h2>
+        <h3>Cynthia Xu</h3>
+        <p>A finance and strategy executive with over two decades of cross-border leadership. My career spans multinational corporations across China, Asia-Pacific, Africa, and North America — including a decade leading global finance operations.</p>
+        <p>My expertise lies in building scalable financial systems, establishing governance frameworks, and driving automation — all with a strategic mindset.</p>
+        <p>Yet numbers alone don’t tell the full story. True impact comes from growth — of people and perspective. As I pivot toward advisory and board roles, my mission is to help organizations and emerging leaders navigate uncertainty, simplify complexity, and lead with purpose. My credo: Business needs stewardship. So does life. 30% fate, 70% endeavor.</p>
+        <p><strong>TomorrowCFO</strong> is where finance meets transformation.</p>
+        <h3>Contact</h3>
+        <p>Email: <a href="mailto:contact@tomorrowcfo.com">contact@tomorrowcfo.com</a></p>
+        <p>LinkedIn: <a href="#">(TBD)</a></p>
+        <p>Service Area: Global Remote · Asia / North America (on-site by request)</p>
+      </div>
+      <div data-lang="zh">
+        <h2>关于我们</h2>
+        <h3>Cynthia Xu</h3>
+        <p>一位拥有二十余年跨境领导经验的财务与战略高管，管理遍布中国、亚洲、非洲、欧洲、美洲的团队和业务。曾任多国子公司董事角色，近年来专注于全球财务战略转型与数字化项目。</p>
+        <p>拥有中国注册会计师（CPA）、英国特许公认会计师（ACCA）与国际注册内部审计师（CIA）等专业认证，擅长在汽车、制造业领域内推动系统性改革与治理，并以战略思维推动自动化。</p>
+        <p>数字只是故事的一部分。真正的影响力源自人的成长和视野的拓展。我的信念：企业需要经营，人生也需要用心经营——三分命运，七分打拼。</p>
+        <p><strong>TomorrowCFO</strong>，是财务与变革的交汇之地。</p>
+        <h3>联系方式</h3>
+        <p>📮 Email: <a href="mailto:contact@tomorrowcfo.com">contact@tomorrowcfo.com</a></p>
+        <p>🔗 LinkedIn: <a href="#">（可留空或添加）</a></p>
+        <p>📍 服务地区：全球远程 + 亚洲 / 北美本地可约</p>
+      </div>
+    </div>
   </section>
 
-  <!-- ─── Contact ─────────────────────────────────────────── -->
+  <!-- ─── C.F.O. FRAMEWORK (neutral light band) ────────────── -->
+  <section id="cfo" class="strip">
+    <div class="container">
+      <div data-lang="en">
+        <h2>C.F.O. Framework</h2>
+        <p><strong>C.F.O. = Compassion | Forward-thinking | Orchestration</strong></p>
+        <p>A CFO is not just a strategic partner — but a true orchestrator of value.</p>
+        <p><span class="pill c-green">🌿 Compassion</span> — Empathy, Responsibility, Action</p>
+        <p><span class="pill c-blue">🔭 Forward-thinking</span> — Vision, Insight, Strategic perspective</p>
+        <p><span class="pill c-gold">🪄 Orchestration</span> — Integrating numbers, people, and purpose — turning complexity into clarity</p>
+      </div>
+      <div data-lang="zh">
+        <h2>明日财务官模型</h2>
+        <p><strong>C.F.O. = Compassion | Forward-thinking | Orchestration</strong></p>
+        <p>财务官不只战略同路人，更是价值整合者。</p>
+        <p><span class="pill c-green">🌿 Compassion</span> — 共情、责任、行动</p>
+        <p><span class="pill c-blue">🔭 Forward Thinking</span> — 高瞻远瞩、深刻洞见</p>
+        <p><span class="pill c-gold">🪄 Orchestration</span> — 系统协作、运筹帷幄，跨越职能实现协同</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─────────────────────────────────────────── -->
+  <section id="services">
+    <div class="container" style="padding:3em 0;">
+      <div data-lang="en">
+        <h2 style="text-align:center;">How I Can Help</h2>
+        <p style="text-align:center;">TomorrowCFO offers tailored solutions to help businesses build a more agile, resilient, and future-ready financial ecosystem.</p>
+        <div class="services-grid" style="margin-top:2em;">
+          <div class="service">🧭 Strategic Finance Advisory & Independent Directorship</div>
+          <div class="service">🧰 Process & Tools Design (incl. automation)</div>
+          <div class="service">🧑‍🏫 Executive & Team Training / Thought Leadership</div>
+          <div class="service">Cross-cultural Financial Strategy</div>
+          <div class="service">Budgeting & Data-driven Strategy · Automation Blueprints · XBRL Tagging Ideas · Dashboards & Performance Kits</div>
+        </div>
+        <div style="text-align:center; margin-top:2em;">
+          <a href="#" class="btn">Learn More</a>
+        </div>
+      </div>
+      <div data-lang="zh">
+        <h2 style="text-align:center;">服务内容</h2>
+        <p style="text-align:center;">TomorrowCFO 提供定制化服务，协助企业构建更敏捷、有韧性、未来导向的财务与管理体系。</p>
+        <div class="services-grid" style="margin-top:2em;">
+          <div class="service">🧭 战略咨询与独立董事服务（Strategic Advisory & Independent Directorship）</div>
+          <div class="service">🧰 流程与模型工具（Tools and Models）</div>
+          <div class="service">🧑‍🏫 高阶培训与思想传播（Training & Thought Leadership）</div>
+          <div class="service">跨文化财务战略顾问</div>
+          <div class="service">预算与数据驱动战略 / 自动化蓝图 / XBRL 标签思路 / 看板与绩效样板</div>
+        </div>
+        <div style="text-align:center; margin-top:2em;">
+          <a href="#" class="btn">了解更多</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PERSPECTIVES ─────────────────────────────────────── -->
+  <section id="perspectives" class="strip">
+    <div class="container">
+      <!-- EN -->
+      <div data-lang="en">
+        <h2>Perspectives</h2>
+        <p>
+          <span class="pill c-green">🌿 Compassion / Reflection</span>
+          <span class="pill c-blue" style="margin-left:.5em;">🔭 Forward-thinking</span>
+          <span class="pill c-gold" style="margin-left:.5em;">🪄 Orchestration</span>
+        </p>
+        <div class="insights">
+          <h3>
+            C001｜Three Parts Fate, Seven Parts Determination
+            <span class="prov" data-cat="C"><span class="dot" aria-hidden="true"></span><time datetime="2025-06-08">Jun 08, 2025</time></span>
+          </h3>
+          <p>Just as businesses need management, life, too, requires intention... In the end, no one else audits our life but ourselves.</p>
+          <hr/>
+          <h3>
+            F001｜Budgeting Is Not Forecasting — It’s Data Driven Strategy Setup
+            <span class="prov" data-cat="F"><span class="dot" aria-hidden="true"></span><time datetime="2025-06-08">Jun 08, 2025</time></span>
+          </h3>
+          <p>Forecasting projects numbers; budgeting chooses paths — aligning strategy, allocating resources, and closing the loop.</p>
+          <hr/>
+          <h3>
+            F002｜Digital Transformation Isn’t an IT Project — It’s the Business Leader’s Baby
+            <span class="prov" data-cat="F"><span class="dot" aria-hidden="true"></span><time datetime="2025-06-08">Jun 08, 2025</time></span>
+          </h3>
+          <p>IT supports; the business must own, nurture, and guide digital to become a true driver.</p>
+          <hr/>
+          <h3>
+            F003｜Do Less — But Never Do It Carelessly
+            <span class="prov" data-cat="F"><span class="dot" aria-hidden="true"></span><time datetime="2025-06-08">Jun 08, 2025</time></span>
+          </h3>
+          <p>Productivity is focus; leadership is full ownership of outcomes.</p>
+          <hr/>
+          <h3>
+            O001｜The Power of Closing the Loop
+            <span class="prov" data-cat="O"><span class="dot" aria-hidden="true"></span><time datetime="2025-06-08">Jun 08, 2025</time></span>
+          </h3>
+          <p>Cradle-to-grave ownership builds trust and accelerates learning.</p>
+          <hr/>
+          <h3>
+            O002｜Life Is a Balance Sheet. Each Chapter, a P&amp;L.
+            <span class="prov" data-cat="O"><span class="dot" aria-hidden="true"></span><time datetime="2025-06-08">Jun 08, 2025</time></span>
+          </h3>
+          <p>Balance obligations and growth; plan across horizons to avoid getting lost — or getting a loss.</p>
+        </div>
+      </div>
+
+      <!-- ZH -->
+      <div data-lang="zh">
+        <h2>个人原创</h2>
+        <p>
+          <span class="pill c-green">🌿 责任共鸣</span>
+          <span class="pill c-blue" style="margin-left:.5em;">🔭 前瞻战略</span>
+          <span class="pill c-gold" style="margin-left:.5em;">🪄 价值整合</span>
+        </p>
+        <div class="insights">
+          <h3>
+            C001｜三分命运，七分打拼
+            <span class="prov" data-cat="C"><span class="dot" aria-hidden="true"></span><time datetime="2025-06-08">2025年06月08日</time></span>
+          </h3>
+          <p>命运无可控，经营才是真本事……最终，真正的“人生审计师”，不是别人，是我们自己。</p>
+          <hr/>
+          <h3>
+            F001｜预算不是预测，而是用数据引导战略
+            <span class="prov" data-cat="F"><span class="dot" aria-hidden="true"></span><time datetime="2025-06-08">2025年06月08日</time></span>
+          </h3>
+          <p>预测是在假设上推演数字；预算是在假设上选择路径、锚定战略与资源。</p>
+          <hr/>
+          <h3>
+            F002｜数字化本质
+            <span class="prov" data-cat="F"><span class="dot" aria-hidden="true"></span><time datetime="2025-06-08">2025年06月08日</time></span>
+          </h3>
+          <p>数字化不是 IT 项目，而是业务领袖的“孩子”——需要亲自认领与养成。</p>
+          <hr/>
+          <h3>
+            F003｜少做事，但不能草做事
+            <span class="prov" data-cat="F"><span class="dot" aria-hidden="true"></span><time datetime="2025-06-08">2025年06月08日</time></span>
+          </h3>
+          <p>真正的生产力是深度专注；真正的领导力是对结果的完全负责。</p>
+          <hr/>
+          <h3>
+            O001｜闭环的力量
+            <span class="prov" data-cat="O"><span class="dot" aria-hidden="true"></span><time datetime="2025-06-08">2025年06月08日</time></span>
+          </h3>
+          <p>闭环是责任的终章，也是成长的序章，成就个人、团队与组织的信任与效率。</p>
+          <hr/>
+          <h3>
+            O002｜人生的资产负债表
+            <span class="prov" data-cat="O"><span class="dot" aria-hidden="true"></span><time datetime="2025-06-08">2025年06月08日</time></span>
+          </h3>
+          <p>像经营企业一样经营人生：结构清晰、节奏平衡、长期创造价值。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ──────────────────────────────────────────── -->
   <footer id="contact">
     <div class="container">
-      <h2>Contact / 联系方式</h2>
-      <p>Email: <a href="mailto:contact@tomorrowcfo.com">contact@tomorrowcfo.com</a></p>
-      <p>LinkedIn: <a href="#">Coming Soon</a></p>
-      <p>服务地区：全球远程 + 亚洲 / 北美本地可约</p>
+      <p data-lang="en">© TomorrowCFO. All rights reserved.</p>
+      <p data-lang="zh">© TomorrowCFO. All rights reserved.</p>
+      <p data-lang="en">Email: <a href="mailto:contact@tomorrowcfo.com">contact@tomorrowcfo.com</a> · LinkedIn: <a href="#">(TBD)</a></p>
+      <p data-lang="zh">邮箱：<a href="mailto:contact@tomorrowcfo.com">contact@tomorrowcfo.com</a> · 领英：<a href="#">（待更新）</a></p>
     </div>
   </footer>
+
+  <!-- ─── Language toggle ──────────────────────────────────── -->
+  <script>
+    (function(){
+      const KEY = "tcfo_lang";
+      const html = document.documentElement;
+      const btn  = document.getElementById("langToggle");
+
+      function setLang(lang){
+        html.setAttribute("lang", lang);
+        localStorage.setItem(KEY, lang);
+        btn.textContent = lang === "zh" ? "🌐 EN" : "🌐 中";
+        btn.setAttribute("aria-pressed", lang === "zh" ? "true" : "false");
+      }
+
+      const stored = localStorage.getItem(KEY);
+      const initial = stored ? stored : ((navigator.language || "en").startsWith("zh") ? "zh" : "en");
+      setLang(initial);
+      btn.addEventListener("click", () => setLang(html.getAttribute("lang") === "zh" ? "en" : "zh"));
+    })();
+  </script>
 </body>
 </html>
